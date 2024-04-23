@@ -1,0 +1,18 @@
+main: mc.mythofy.mythofycommands.MythofyCommands
+name: MythofyCommands
+version: 1.0.0
+description: MythofyCommands.
+api-version: 1.20
+author: Mythofy Dev
+depends: PlaceholderAPI
+commands:
+  rank:
+    description: Rank
+  mutechat:
+    description: Mutechat
+  stop:
+    description: Stop
+  clearchat:
+    description: Clearchat
+  discord:
+    description: Discord
