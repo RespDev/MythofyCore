@@ -29,6 +29,7 @@ public class MythofyCommands extends JavaPlugin {
 	public SQLDriver SQL;
 	public SQLGetter data;
 	@Getter private FileConfiguration config;
+	@Getter private String pluginVersion = "0.0.1";
 
 	@Override
 	public void onEnable() {

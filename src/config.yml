@@ -4,3 +4,9 @@ mysql:
   username:
   password:
   database: mythofy
+parkserver: link here
+server:
+  instance-name: Unknown
+  instance-type: Unknown
+discord-hook:
+slack-hook:
