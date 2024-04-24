@@ -2,7 +2,10 @@ package mc.mythofy.mythofycommands;
 
 import java.sql.SQLException;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import lombok.Getter;
 import mc.mythofy.mythofycommands.commands.ClearchatCommand;
 import mc.mythofy.mythofycommands.commands.DiscordCommand;
 import mc.mythofy.mythofycommands.commands.MutechatCommand;
@@ -26,12 +29,15 @@ public class MythofyCommands extends JavaPlugin {
 	public static Boolean chatMuted = false;
 	public SQLDriver SQL;
 	public SQLGetter data;
+	@Getter private FileConfiguration config;
 
 	@Override
 	public void onEnable() {
+		this.saveDefaultConfig();
 		this.SQL = new SQLDriver();
 		this.data = new SQLGetter(this);
 		plugin = this;
+		config = this.getConfig();
 
 		try {
 			SQL.connect();

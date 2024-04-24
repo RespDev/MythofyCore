@@ -4,13 +4,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.bukkit.configuration.file.FileConfiguration;
+
+import mc.mythofy.mythofycommands.MythofyCommands;
+
 public class SQLDriver {
 
-	private String host = "na03-sql.pebblehost.com";
-	private String port = "3306";
-	private String username = "customer_696722_icecap";
-	private String password = "Mocn5jGzsoCVHqu~@rFc";
-	private String database = "customer_696722_icecap";
+	private FileConfiguration config = MythofyCommands.getInstance().getConfig();
+	private String host = config.getString("host");
+	private String port = config.getString("port");
+	private String username = config.getString("username");
+	private String password = config.getString("password");
+	private String database = config.getString("database");
 
 	private Connection connection;
 
