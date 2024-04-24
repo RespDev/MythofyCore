@@ -9,11 +9,11 @@ import mc.mythofy.mythofycommands.MythofyCommands;
 public class SQLDriver {
 
 	private FileConfiguration config = MythofyCommands.getInstance().getConfig();
-	private String host = config.getString("host");
-	private String port = config.getString("port");
-	private String username = config.getString("username");
-	private String password = config.getString("password");
-	private String database = config.getString("database");
+	private String host = config.getString("mysql.host");
+	private String port = config.getString("mysql.port");
+	private String username = config.getString("mysql.username");
+	private String password = config.getString("mysql.password");
+	private String database = config.getString("mysql.database");
 
 	private Connection connection;
 

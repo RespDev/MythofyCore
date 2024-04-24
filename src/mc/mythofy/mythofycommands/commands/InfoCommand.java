@@ -24,8 +24,8 @@ public class InfoCommand implements CommandExecutor {
 		if (label.equalsIgnoreCase("info")) {
 			if (RankManager.getRank(uuid).getRankId() >= Rank.DEVELOPER.getRankId()) {
 				p.sendMessage(ChatColor.GREEN + "Instance Info:");
-				p.sendMessage(ChatColor.GREEN + "Instance-name: " + config.getString("instance-name"));
-				p.sendMessage(ChatColor.GREEN + "Instance-type: " + config.getString("instance-type"));
+				p.sendMessage(ChatColor.GREEN + "Instance-name: " + config.getString("server.instance-name"));
+				p.sendMessage(ChatColor.GREEN + "Instance-type: " + config.getString("server.instance-type"));
 				p.sendMessage(ChatColor.GREEN + "Plugin-version: " + MythofyCommands.getInstance().getPluginVersion());
 			} else {
 				sender.sendMessage(ChatColor.RED + "No permission!");
