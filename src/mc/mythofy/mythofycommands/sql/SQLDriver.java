@@ -3,9 +3,7 @@ package mc.mythofy.mythofycommands.sql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 import org.bukkit.configuration.file.FileConfiguration;
-
 import mc.mythofy.mythofycommands.MythofyCommands;
 
 public class SQLDriver {
