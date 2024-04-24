@@ -13,7 +13,7 @@ import mc.mythofy.mythofycommands.rank.RankManager;
 
 public class InfoCommand implements CommandExecutor {
 	
-	private FileConfiguration config = MythofyCommands.getInstance().getConfig();
+	private FileConfiguration config = MythofyCommands.getMythofyConfig();
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

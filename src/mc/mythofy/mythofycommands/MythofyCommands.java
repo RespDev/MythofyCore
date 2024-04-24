@@ -2,7 +2,9 @@ package mc.mythofy.mythofycommands;
 
 import java.sql.SQLException;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import lombok.Getter;
 import mc.mythofy.mythofycommands.commands.ClearchatCommand;
@@ -26,18 +28,25 @@ public class MythofyCommands extends JavaPlugin {
 
 	private static MythofyCommands plugin;
 	public static Boolean chatMuted = false;
+	@Getter private static FileConfiguration mythofyConfig;
 	public SQLDriver SQL;
 	public SQLGetter data;
-	@Getter private FileConfiguration config;
 	@Getter private String pluginVersion = "0.0.1";
 
 	@Override
 	public void onEnable() {
-		this.saveDefaultConfig();
+		// Load Plugin
+		plugin = this;
+		// Kick all players on reload
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			p.kickPlayer(ChatColor.RED + "Server is reloading!");
+		}
+		// Load Config
+		plugin.saveDefaultConfig();
+		mythofyConfig = plugin.getConfig();
+		// Load SQL
 		this.SQL = new SQLDriver();
 		this.data = new SQLGetter(this);
-		plugin = this;
-		config = this.getConfig();
 
 		try {
 			SQL.connect();

@@ -8,7 +8,7 @@ import mc.mythofy.mythofycommands.MythofyCommands;
 
 public class SQLDriver {
 
-	private FileConfiguration config = MythofyCommands.getInstance().getConfig();
+	private FileConfiguration config = MythofyCommands.getMythofyConfig();
 	private String host = config.getString("mysql.host");
 	private String port = config.getString("mysql.port");
 	private String username = config.getString("mysql.username");

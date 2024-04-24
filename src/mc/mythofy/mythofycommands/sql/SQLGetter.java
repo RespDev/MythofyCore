@@ -33,7 +33,7 @@ public class SQLGetter {
 			UUID uuid = p.getUniqueId();
 			if (!doesExist(uuid)) {
 				PreparedStatement statement2 = plugin.SQL.getConnection()
-						.prepareStatement("INSERT IGNORE profile " + "(UUID,USERNAME,RANK,MONEY) VALUES (?,?,?,?)");
+						.prepareStatement("INSERT IGNORE profile " + "(UUID,USERNAME,RANK,GEMS) VALUES (?,?,?,?)");
 				statement2.setString(1, uuid.toString());
 				statement2.setString(2, p.getName());
 				statement2.setString(3, "MEMBER");
