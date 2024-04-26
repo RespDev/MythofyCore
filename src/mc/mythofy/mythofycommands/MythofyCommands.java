@@ -1,6 +1,7 @@
 package mc.mythofy.mythofycommands;
 
 import java.sql.SQLException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -51,27 +52,30 @@ public class MythofyCommands extends JavaPlugin {
 		try {
 			SQL.connect();
 		} catch (ClassNotFoundException | SQLException e) {
-			Bukkit.getLogger().severe("[MythofyCommands] Failed to connect to the database!");
+			logError("Core", "Failed to connect to the database");
 			e.printStackTrace();
 		}
 		if (SQL.isConnected()) {
-			Bukkit.getLogger().info("[MythofyCommands] Now connected to the database!");
+			logMessage("Core", "Now connected to the database");
 			data.createTable();
 		}
 		registerCommands();
 		registerListeners();
+		MythofyCommands.logMessage("Core", "Enabled");
 	}
 
 	@Override
 	public void onDisable() {
 		if (SQL.isConnected())
 			SQL.disconnect();
+		MythofyCommands.logMessage("Core", "Disabled");
 	}
 
 	private void registerListeners() {
 		Bukkit.getPluginManager().registerEvents(new Join(), this);
 		Bukkit.getPluginManager().registerEvents(new Quit(), this);
 		Bukkit.getPluginManager().registerEvents(new Chat(), this);
+		MythofyCommands.logMessage("Core", "Listeners registered");
 	}
 
 	private void registerCommands() {
@@ -83,9 +87,18 @@ public class MythofyCommands extends JavaPlugin {
 		this.getCommand("mutechat").setExecutor(new MutechatCommand());
 		this.getCommand("clearchat").setExecutor(new ClearchatCommand());
 		this.getCommand("stop").setExecutor(new StopCommand());
+		MythofyCommands.logMessage("Core", "Commands registered");
 	}
 
 	public static MythofyCommands getInstance() {
 		return plugin;
+	}
+	
+	public static void logMessage(String name, String message) {
+		Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + name + "> " + ChatColor.GREEN + "" + message);
+	}
+	
+	public static void logError(String name, String message) {
+		Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + name + "> " + ChatColor.RED + "" + message);
 	}
 }
