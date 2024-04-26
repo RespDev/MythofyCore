@@ -2,7 +2,7 @@ main: mc.mythofy.mythofycommands.MythofyCommands
 name: MythofyCommands
 version: 1.0.0
 description: MythofyCommands.
-api-version: 1.20
+api-version: 1.13
 author: Mythofy Dev
 depends: PlaceholderAPI
 commands:

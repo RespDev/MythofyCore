@@ -33,7 +33,6 @@ public class Join implements Listener {
 				+ RankManager.getRank(p.getUniqueId()).getColor() + p.getName());*/
 		
 		// Header & Footer
-		p.setPlayerListHeader(ChatColor.GOLD + "" + ChatColor.BOLD + "MYTHOFY");
-		p.setPlayerListFooter(ChatColor.GOLD + "store.mythofy.net");
+		//TODO CODE IT
 	}
 }
