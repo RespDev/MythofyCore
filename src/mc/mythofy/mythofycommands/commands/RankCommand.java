@@ -47,7 +47,7 @@ public class RankCommand implements CommandExecutor {
 				return true;
 			}
 		}
-		
+
 		if (rankToSet == Rank.OWNER) {
 			if (isUsingUserRank != Rank.OWNER) {
 				sender.sendMessage(ChatColor.RED + "You cannot set someone to that rank!");

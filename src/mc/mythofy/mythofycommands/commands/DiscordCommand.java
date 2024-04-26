@@ -9,11 +9,9 @@ public class DiscordCommand implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		if (label.equalsIgnoreCase("discord")) {
-			sender.sendMessage(ChatColor.GREEN + "Join our discord at " + ChatColor.GOLD + "discord.mythofy.net"
-					+ ChatColor.GREEN + "!");
-		}
-		return false;
+		sender.sendMessage(ChatColor.GREEN + "Join our discord at " + ChatColor.GOLD + "discord.mythofy.net"
+				+ ChatColor.GREEN + "!");
+		return true;
 	}
 
 }

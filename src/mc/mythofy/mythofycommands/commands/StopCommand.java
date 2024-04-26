@@ -11,16 +11,13 @@ public class StopCommand implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String name, String[] args) {
-		if (name.equalsIgnoreCase("stop")) {
-			if (!(sender instanceof Player)) {
-				shutdown();
-				return true;
-			}
-			Player p = (Player) sender;
-			p.sendMessage(ChatColor.RED + "Disabled!");
+		if (!(sender instanceof Player)) {
+			shutdown();
 			return true;
 		}
-		return false;
+		Player p = (Player) sender;
+		p.sendMessage(ChatColor.RED + "Disabled!");
+		return true;
 	}
 
 	public void shutdown() {

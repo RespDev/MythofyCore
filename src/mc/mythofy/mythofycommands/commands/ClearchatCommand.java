@@ -19,20 +19,17 @@ public class ClearchatCommand implements CommandExecutor {
 			return true;
 		Player p = (Player) sender;
 		UUID uuid = p.getUniqueId();
-		if (name.equalsIgnoreCase("clearchat")) {
-			if (RankManager.getRank(uuid).getRankId() >= Rank.TRAINEE.getRankId()) {
-				for (Player all : Bukkit.getOnlinePlayers()) {
-					if (RankManager.getRank(uuid).getRankId() < Rank.TRAINEE.getRankId()) {
-						for (int i = 0; i < 150; i++)
-							all.sendMessage(" ");
-					}
+		if (RankManager.getRank(uuid).getRankId() >= Rank.TRAINEE.getRankId()) {
+			for (Player all : Bukkit.getOnlinePlayers()) {
+				if (RankManager.getRank(uuid).getRankId() < Rank.TRAINEE.getRankId()) {
+					for (int i = 0; i < 150; i++)
+						all.sendMessage(" ");
 				}
-				Bukkit.broadcastMessage(ChatColor.GREEN + "Server chat has been cleared.");
-			} else {
-				p.sendMessage(ChatColor.RED + "No permission!");
-				return true;
 			}
+			Bukkit.broadcastMessage(ChatColor.GREEN + "Server chat has been cleared.");
+		} else {
+			p.sendMessage(ChatColor.RED + "No permission!");
 		}
-		return false;
+		return true;
 	}
 }

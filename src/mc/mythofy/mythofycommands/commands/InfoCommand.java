@@ -12,26 +12,23 @@ import mc.mythofy.mythofycommands.rank.Rank;
 import mc.mythofy.mythofycommands.rank.RankManager;
 
 public class InfoCommand implements CommandExecutor {
-	
+
 	private FileConfiguration config = MythofyCommands.getMythofyConfig();
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!(sender instanceof Player))
 			return true;
 		Player p = (Player) sender;
 		UUID uuid = p.getUniqueId();
-		if (label.equalsIgnoreCase("info")) {
-			if (RankManager.getRank(uuid).getRankId() >= Rank.DEVELOPER.getRankId()) {
-				p.sendMessage(ChatColor.GREEN + "Instance Info:");
-				p.sendMessage(ChatColor.GREEN + "Instance-name: " + config.getString("server.instance-name"));
-				p.sendMessage(ChatColor.GREEN + "Instance-type: " + config.getString("server.instance-type"));
-				p.sendMessage(ChatColor.GREEN + "Plugin-version: " + MythofyCommands.getInstance().getPluginVersion());
-			} else {
-				sender.sendMessage(ChatColor.RED + "No permission!");
-				return true;
-			}
+		if (RankManager.getRank(uuid).getRankId() >= Rank.DEVELOPER.getRankId()) {
+			p.sendMessage(ChatColor.GREEN + "Instance Info:");
+			p.sendMessage(ChatColor.GREEN + "Instance-name: " + config.getString("server.instance-name"));
+			p.sendMessage(ChatColor.GREEN + "Instance-type: " + config.getString("server.instance-type"));
+			p.sendMessage(ChatColor.GREEN + "Plugin-version: " + MythofyCommands.getInstance().getPluginVersion());
+		} else {
+			sender.sendMessage(ChatColor.RED + "No permission!");
 		}
-		return false;
+		return true;
 	}
 }

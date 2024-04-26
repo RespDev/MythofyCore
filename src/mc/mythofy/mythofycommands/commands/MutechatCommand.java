@@ -20,17 +20,14 @@ public class MutechatCommand implements CommandExecutor {
 			return true;
 		Player p = (Player) sender;
 		UUID uuid = p.getUniqueId();
-		if (name.equalsIgnoreCase("mutechat")) {
-			if (RankManager.getRank(uuid).getRankId() >= Rank.TRAINEE.getRankId()) {
-				MythofyCommands.chatMuted = !MythofyCommands.chatMuted;
-				Bukkit.broadcastMessage(
-						(MythofyCommands.chatMuted ? ChatColor.RED + "Chat has been muted by " + p.getName() + "."
-								: ChatColor.GREEN + "Chat has been unmuted by " + p.getName() + "."));
-			} else {
-				sender.sendMessage(ChatColor.RED + "No permission!");
-				return true;
-			}
+		if (RankManager.getRank(uuid).getRankId() >= Rank.TRAINEE.getRankId()) {
+			MythofyCommands.chatMuted = !MythofyCommands.chatMuted;
+			Bukkit.broadcastMessage(
+					(MythofyCommands.chatMuted ? ChatColor.RED + "Chat has been muted by " + p.getName() + "."
+							: ChatColor.GREEN + "Chat has been unmuted by " + p.getName() + "."));
+		} else {
+			sender.sendMessage(ChatColor.RED + "No permission!");
 		}
-		return false;
+		return true;
 	}
 }
