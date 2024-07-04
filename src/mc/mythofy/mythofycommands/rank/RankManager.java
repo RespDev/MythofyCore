@@ -23,7 +23,7 @@ public class RankManager {
 
 	public static void setRank(UUID uuid, Rank rank) {
 		if (MythofyCommands.getInstance().SQL.isConnected()) {
-			MythofyCommands.getInstance().data.setUserRank(uuid, rank);
+			if (!(rankManager.get(uuid) == null)) MythofyCommands.getInstance().data.setUserRank(uuid, rank);
 			rankManager.put(uuid, rank);
 		}
 		rankManager.put(uuid, rank);

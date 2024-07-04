@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 import mc.mythofy.mythofycommands.MythofyCommands;
 
-public class Storage {
+public class Currency {
 
 	private static Map<UUID, Integer> Gems = new HashMap<UUID, Integer>();
 

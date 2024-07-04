@@ -1,0 +1,17 @@
+sql:
+  url: jdbc:mysql://address:3306/Database
+  user: root
+  password: password
+server-type: Unknown
+instance-name: ServerName
+dashboardURL: ws://socket.dashboard.playground.palace.network:7892
+isDefaultSidebarEnabled: true
+debug: false
+dashboardAndSqlDisabled: false
+isGameMode: false
+showTitle: false
+loginTitle: ""
+loginSubtitle: ""
+loginFadeIn: 20
+loginStay: 100
+loginFadeOut: 20

@@ -3,12 +3,21 @@ package mc.mythofy.mythofycommands.sql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import mc.mythofy.mythofycommands.MythofyCommands;
 
+/**
+ * 
+ * SQL Driver
+ * @author Res
+ * 
+ */
+
 public class SQLDriver {
 
-	private FileConfiguration config = MythofyCommands.getMythofyConfig();
+	private FileConfiguration config = MythofyCommands.getCoreConfig();
 	private String host = config.getString("mysql.host");
 	private String port = config.getString("mysql.port");
 	private String username = config.getString("mysql.username");
@@ -28,7 +37,9 @@ public class SQLDriver {
 		if (isConnected()) {
 			try {
 				connection.close();
+				MythofyCommands.logMessage("Core", "Now disconnected from the database");
 			} catch (SQLException e) {
+				MythofyCommands.logMessage("Core", ChatColor.DARK_RED + "Failed to disconnect from the database");
 				e.printStackTrace();
 			}
 		}

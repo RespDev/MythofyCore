@@ -1,0 +1,12 @@
+[
+  {
+    "groupId": "com.rabbitmq",
+    "artifactId": "amqp-client",
+    "version": "5.21.0"
+  },
+  {
+    "groupId": "org.slf4j",
+    "artifactId": "slf4j-api",
+    "version": "1.7.30"
+  }
+]

@@ -1,33 +1,26 @@
 package mc.mythofy.mythofycommands.commands;
 
-import java.util.UUID;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import mc.mythofy.mythofycommands.MythofyCommands;
 import mc.mythofy.mythofycommands.rank.Rank;
-import mc.mythofy.mythofycommands.rank.RankManager;
+import network.palace.core.command.CommandException;
+import network.palace.core.command.CommandMeta;
+import network.palace.core.command.CoreCommand;
 
-public class MutechatCommand implements CommandExecutor {
+@CommandMeta(rank = Rank.TRIALMOD)
+public class MutechatCommand extends CoreCommand {
+	
+    public MutechatCommand() {
+        super("mutechat");
+    }
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String name, String[] args) {
-		if (!(sender instanceof Player))
-			return true;
-		Player p = (Player) sender;
-		UUID uuid = p.getUniqueId();
-		if (RankManager.getRank(uuid).getRankId() >= Rank.TRAINEE.getRankId()) {
-			MythofyCommands.chatMuted = !MythofyCommands.chatMuted;
-			Bukkit.broadcastMessage(
-					(MythofyCommands.chatMuted ? ChatColor.RED + "Chat has been muted by " + p.getName() + "."
-							: ChatColor.GREEN + "Chat has been unmuted by " + p.getName() + "."));
-		} else {
-			sender.sendMessage(ChatColor.RED + "No permission!");
-		}
-		return true;
-	}
+    @Override
+    protected void handleCommand(Player player, String[] args) throws CommandException {
+		MythofyCommands.chatMuted = !MythofyCommands.chatMuted;
+		Bukkit.broadcastMessage(
+				(MythofyCommands.chatMuted ? ChatColor.RED + "Chat has been muted by " + player.getName() + "."
+						: ChatColor.GREEN + "Chat has been unmuted by " + player.getName() + "."));
+    }
 }

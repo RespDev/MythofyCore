@@ -1,0 +1,16 @@
+mysql:
+  host: 
+  port:
+  username:
+  password:
+  database: galaxy
+rabbitmq:
+  virtualhost:
+  host:
+  username:
+  password:
+server:
+  instance-name: Unknown
+  instance-type: Unknown
+default-scoreboard: true
+debug: false

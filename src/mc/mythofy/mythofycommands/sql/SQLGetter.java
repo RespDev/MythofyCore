@@ -19,9 +19,9 @@ public class SQLGetter {
 	public void createTable() {
 		PreparedStatement statement;
 		try {
+			// Create Player Table
 			statement = plugin.SQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS profile "
-					+ "(USERNAME VARCHAR(100),UUID VARCHAR(100),RANK VARCHAR(100),GEMS INT(100),PRIMARY KEY (UUID))");
-
+					+ "(USERNAME VARCHAR(100),UUID VARCHAR(100),RANK VARCHAR(100),GEMS INT(100),ONLINE BOOLEAN,PRIMARY KEY (UUID))");
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -33,15 +33,15 @@ public class SQLGetter {
 			UUID uuid = p.getUniqueId();
 			if (!doesExist(uuid)) {
 				PreparedStatement statement2 = plugin.SQL.getConnection()
-						.prepareStatement("INSERT IGNORE profile " + "(UUID,USERNAME,RANK,GEMS) VALUES (?,?,?,?)");
+						.prepareStatement("INSERT IGNORE profile " + "(UUID,USERNAME,RANK,GEMS,ONLINE) VALUES (?,?,?,?,?)");
 				statement2.setString(1, uuid.toString());
 				statement2.setString(2, p.getName());
 				statement2.setString(3, "MEMBER");
 				statement2.setInt(4, 0);
+				statement2.setBoolean(5, true);
 				statement2.executeUpdate();
 
 				return;
-
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -109,5 +109,23 @@ public class SQLGetter {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	public Boolean isUserOnline(UUID uuid) {
+		try {
+			PreparedStatement statement = plugin.SQL.getConnection()
+					.prepareStatement("SELECT ONLINE FROM profile WHERE UUID=?");
+			statement.setString(1, uuid.toString());
+			ResultSet results = statement.executeQuery();
+
+			if (results.next()) {
+				Boolean online = results.getBoolean("TOKENS");
+				if (online != null)
+					return online;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
